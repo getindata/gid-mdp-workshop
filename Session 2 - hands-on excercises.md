@@ -1,20 +1,25 @@
 # Session 2
 
-## GID DataOps CLI: Modifying an end-to-end data pipeline
+## GetInData Modern Data Platform: Modifying an end-to-end data pipeline
 
-Welcome to the DataOps CLI Labs workshop hands-on session 2. By the end of this tutorial, you will know how to:
-- store unused models in dbt
-- configure dbt project and introduce layer structure
-- transform custom SQL querries into data pipeline - best practices
+Welcome to the **GetInData Modern Data Platform** workshop hands-on `session 2`. 
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. This tutorial was written with the use of `GID DataOps 1.0.9` [Jupter Image](https://console.cloud.google.com/gcr/images/getindata-images-public/global/jupyterlab-dataops@sha256:ab5f141c9b6916cd727817340380953715922df607f94ff9d523732b8c0842e1/details) as a current release.
+By the end of this tutorial, you will learn how to:
+- store temporary models in `dbt`
+- configure dbt project structure from standardized template
+- transform custom SQL queries into data pipeline applying best practices
 
-# Excercise
+Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
+
+This tutorial uses our DataOps JupyterLab image 1.0.9.
+For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
+
+# Exercise
 
 ## Storing temporary resources
 
-Task: move (cut & paste) all models and singular tests (if present) created during Session 1 excercises to `analyses` folder. 
-All models stored in `analyses` forlder will be noticed dbt but skipped during the pipeline execution. **Note:** if your other models still have references to the deprecated models, the dbt pipeline will probably fail. Alternatively - you can delete unwanted models from your project or remove their extensions. Without having the ".sql" / ".yml" extention, the file will be ignored by dbt.
+Task: move (cut & paste) all models and singular tests (if present) created during Session 1 exercises to `analyses` folder. 
+All models stored in `analyses` folder will be noticed dbt but skipped during the pipeline execution. **Note:** if your other models still have references to the deprecated models, the dbt pipeline will probably fail. Alternatively - you can delete unwanted models from your project or remove their extensions. Without having the ".sql" / ".yml" extention, the file will be ignored by dbt.
 
 ## Business task
 
@@ -52,7 +57,7 @@ Your task is to:
 
 4. Preview the results in BI tools
    
-The task given above, although simplified, represents a real-world scenario for analytics engineer everyday work. That includes familiarizing ourself with the business logic, raw data structure, dbt project shape and internal rules regarding building models for the pipeline we are going to work with. We encourage you to try the excercise on your own but example of how the updated pipeline could look alike (with more detailed instruction how to get there) is provided underneath.
+The task given above, although simplified, represents a real-world scenario for analytics engineer everyday work. That includes familiarizing ourself with the business logic, raw data structure, dbt project shape and internal rules regarding building models for the pipeline we are going to work with. We encourage you to try the exercise on your own but example of how the updated pipeline could look alike (with more detailed instruction how to get there) is provided underneath.
 
 In case you need to catch up with the dbt project we created during demo session - You can find it in this repository: [dbt project - Session 2](https://gitlab.com/datamass-mdp-workshop/msoszko-datamass-project/-/tree/session-2-updated)
 
@@ -420,4 +425,4 @@ The DAG should now look like this:
 
 ![image](https://user-images.githubusercontent.com/97670480/192161501-fee57698-5edf-4824-897a-8c39abc3fea3.png)
 
-This concludes the excercises.
+This concludes the exercises.

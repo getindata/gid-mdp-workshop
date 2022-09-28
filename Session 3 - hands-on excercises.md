@@ -1,20 +1,25 @@
 # Session 3
 
-## GID DataOps CLI: CI/CD & Quality Control
-Welcome to the DataOps CLI Labs workshop hands-on session 3. By the end of this tutorial, you will know how to:
+## CI/CD & Quality Control
+Welcome to the GetInData Modern Data Platform workshop - hands-on session 3. 
+
+By the end of this tutorial, you will know how to:
 - deploy your code to staging-dev 
 - apply dbt tests to your project
 - monitor the pipeline's execution with Airflow
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. This tutorial was written with the use of `GID DataOps 1.0.9` [Jupter Image](https://console.cloud.google.com/gcr/images/getindata-images-public/global/jupyterlab-dataops@sha256:ab5f141c9b6916cd727817340380953715922df607f94ff9d523732b8c0842e1/details) as a current release.
+Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
 
-# Excercise
+This tutorial uses our DataOps JupyterLab image 1.0.9.
+For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
+  
+# Exercise
 
 **Note**: if you didn't manage to complete the previous exercise, copy the folder from <<here>> to catch up!
 
 ## Commit your project to the remote repository
 
-During previous excercises we've create a local dbt pipeline - which is personal development environment. Now, it is time to review and publish the code so it can be put into staging dev. At this point, our remote repository (the master branch) is empty. Your task is to publish your project by initiating workflow typical for git operations:
+During previous exercises we've create a local dbt pipeline - which is personal development environment. Now, it is time to review and publish the code so it can be put into staging dev. At this point, our remote repository (the master branch) is empty. Your task is to publish your project by initiating workflow typical for git operations:
 - create a new branch
 - commit all changes in the code
 - publish the branch to the remote repository
@@ -24,11 +29,11 @@ During previous excercises we've create a local dbt pipeline - which is personal
 
 For that you can follow step-by-step instruction presented below:
 **Step 1.** 
-Inside your JupyterLab notebook launch VSCode and navigate to your project. Create new local branch by clicking on the Git icon on lower-left side of the screen:
+From JupyterLab launcher click on `VSCode` icon and navigate to your project. Create new local branch by clicking on the Git icon on lower-left side of the screen:
 
 <img src="https://user-images.githubusercontent.com/97670480/192233080-d03f3863-0f3c-4be8-a75e-e0a0c196072f.png"  width="40%" height="40%">
 
-and typing new branch name (this step executes the `git branch checkout` CLI command equivalent for VSCode):
+and type new branch name (this step executes the `git branch checkout` CLI command equivalent for VSCode):
 
 <img src="https://user-images.githubusercontent.com/97670480/192233893-4d7ce5d0-30d9-4618-868f-025585f255e2.png"  width="40%" height="40%">
 
@@ -84,7 +89,7 @@ Now, you can monitor execution of your pipeline. With the project of our size it
 
 ## Add dbt tests to your project
 
-Tests are utterly important part of any data pipeline. In theory, if the code is right, data should be also correct. However, even for easy pipelines, subsequent and continuous code modification, adding new sources, changes in business logic etc. greatly increases risk of duplication, nullification, incorrect aggregations, and as result - greatly affects the analytics (in a negatie way). In this excercise you will add three types of tests to your local development instance of dbt and then transfer them into Airflow. 
+Tests are utterly important part of any data pipeline. In theory, if the code is right, data should be also correct. However, even for easy pipelines, subsequent and continuous code modification, adding new sources, changes in business logic etc. greatly increases risk of duplication, nullification, incorrect aggregations, and as result - greatly affects the analytics (in a negatie way). In this exercise you will add three types of tests to your local development instance of dbt and then transfer them into Airflow. 
 
 Your task is to add:
 
@@ -110,13 +115,13 @@ We encourage you to try this task on your own. However, if you'd like to follow 
 
 Congrats! You have deployed and tested your pipelie. If tere is some time left we encourage you to take a bonus exercise. 
 
-### Bonus Excercise ###
+### Bonus Exercise ###
 
 If your pipeline finishes run on staging-dev with "all green" try and play around with tests, making them to fail badly! For that you can brak your models, modify tests logic (esp. for singular tests), narrow test boundary conditions etc, but please, do not modify the raw tables! Don't forget to publish your buggy code and run it on airflow.
 
 ## Solutions
 
-In this chapter we'd like to provide couple of examples on how to implement tests described in the exercise. Note that we will use here the models created during Session 2 Excercises. If you need to catch-up please refer to [the following repository](https://gitlab.com/datamass-mdp-workshop/msoszko-datamass-project/-/tree/Session-2-updated-hands-on-results). This repository stores the complete dbt project example created so far during Session 2 demonstration and hands-on excercises, feel free to copy-paste models into your local instance of dbt if you need.
+In this chapter we'd like to provide couple of examples on how to implement tests described in the exercise. Note that we will use here the models created during Session 2 Exercises. If you need to catch-up please refer to [the following repository](https://gitlab.com/datamass-mdp-workshop/msoszko-datamass-project/-/tree/Session-2-updated-hands-on-results). This repository stores the complete dbt project example created so far during Session 2 demonstration and hands-on exercises, feel free to copy-paste models into your local instance of dbt if you need.
 
 ### Core generic test.
 
@@ -168,7 +173,7 @@ Create config yaml file for the `dim_users` model in `models/mart/marketing` fol
 
 > dbt run-operation generate_model_yaml --args '{"model_name": "dim_users"}'
 
-Insert the following snippet of code (in this test dbt will check whether columns in the dim_users model match the ordered list we have prepared, this is very usefull whenever we need additional support for controling on what kind of data we present in the data mart layer):
+Insert the following snippet of code (in this test dbt will check whether columns in the dim_users model match the ordered list we have prepared, this is very useful whenever we need additional support for controlling on what kind of data we present in the data mart layer):
 ```
 version: 2
 
