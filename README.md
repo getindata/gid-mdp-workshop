@@ -16,8 +16,8 @@ All dbt resources (models, tests, seeds) created and presented by during the wor
 - for session 1: [Link](https://github.com/getindata/gid-mdp-workshop/tree/main/Session%201)
 - for session 2: [Link](https://github.com/getindata/gid-mdp-workshop/tree/main/Session%202)
 - for session 2 + hands-on solutions: [Link](https://github.com/getindata/gid-mdp-workshop/tree/main/Session%202%20-%20hands-on%20solutions)
-- for session 3 + hands-on solutions: [Link](https://github.com/getindata/gid-mdp-workshop//tree/main/Session%203%20-%20hands-on%20solutions)
-- CSV files are stored here: [Link](https://github.comgetindata/gid-mdp-workshop/tree/main/CSV)
+- for session 3 + hands-on solutions: [Link](https://github.com/getindata/gid-mdp-workshop/tree/main/Session%203%20-%20hands-on%20solutions)
+- CSV files are stored here: [Link](https://github.com/getindata/gid-mdp-workshop/tree/main/CSV)
 
 
 ### Modern Data Stack components:
