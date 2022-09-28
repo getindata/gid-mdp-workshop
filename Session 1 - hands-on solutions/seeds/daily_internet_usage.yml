@@ -1,0 +1,12 @@
+version: 2
+
+seeds:
+  - name: daily_internet_usage
+    description: ""
+    columns:
+      - name: age_range
+        description: ""
+      - name: daily_mobile_usage
+        description: ""
+      - name: daily_pc_usage
+        description: ""

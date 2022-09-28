@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__users
+    description: ""
+    columns:
+      - name: user_id
+        description: ""
+
+      - name: user_email_domain
+        description: ""
+
+      - name: user_age
+        description: ""
+
+      - name: user_gender
+        description: ""
+
+      - name: user_address_postal_code
+        description: ""
+
+      - name: user_address_city
+        description: ""
+
+      - name: user_address_country
+        description: ""
+
+      - name: user_traffict_source
+        description: ""
+
+      - name: user_account_created_at
+        description: ""

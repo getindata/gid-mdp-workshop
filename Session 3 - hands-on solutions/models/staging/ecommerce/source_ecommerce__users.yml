@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+- name: raw_ecommerce_eu
+  tables:
+  - name: users
+    columns:
+    - name: id
+    - name: first_name
+    - name: last_name
+    - name: email

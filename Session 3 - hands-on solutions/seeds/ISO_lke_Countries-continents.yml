@@ -1,0 +1,7 @@
+version: 2
+
+seeds:
+  - name: ISO_like_Countries-Continents
+    config:
+      schema: seed_data
+

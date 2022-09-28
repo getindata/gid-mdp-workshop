@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: ""
+    tests:
+    - dbt_expectations.expect_table_columns_to_match_ordered_list:
+        column_list: 
+        - user_id
+        - user_age
+        - user_gender
+        - user_email_domain
+        - user_address_postal_code
+        - user_address_city
+        - user_address_country
+        - user_address_continent
+        - total_traffic
+        - first_event
+        - most_recent_event
+        - adwords_traffic
+        - email_traffic
+        - facebook_traffic
+        - organic_traffic
+        - youtube_traffic
+        - customer_total_value
+        - order_cnt
+        - first_order_date
+        - most_recent_order_date
+        - customer_lifespan
+    
+    columns:
+      - name: user_id
+        description: ""
+
+      - name: user_age
+        description: ""
+
+      - name: user_gender
+        description: ""
+
+      - name: user_email_domain
+        description: ""
+
+      - name: user_address_postal_code
+        description: ""
+
+      - name: user_address_city
+        description: ""
+
+      - name: user_address_country
+        description: ""
+
+      - name: user_address_continent
+        description: ""
+
+      - name: total_traffic
+        description: ""
+
+      - name: first_event
+        description: ""
+
+      - name: most_recent_event
+        description: ""
+
+      - name: adwords_traffic
+        description: ""
+
+      - name: email_traffic
+        description: ""
+
+      - name: facebook_traffic
+        description: ""
+
+      - name: organic_traffic
+        description: ""
+
+      - name: youtube_traffic
+        description: ""
+
+      - name: customer_total_value
+        description: ""
+
+      - name: order_cnt
+        description: ""
+
+      - name: first_order_date
+        description: ""
+
+      - name: most_recent_order_date
+        description: ""
+
+      - name: customer_lifespan
+        description: ""
