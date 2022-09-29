@@ -129,7 +129,7 @@ users as (
 select * from users
 ```
 ---
-**Step 4.** Modify the existing `stg_ecommerce__events.sql` model by adding JOIN statement and formatting country names, so the JOIN will not return any null values. Note that we were asked to filter out sensitive data - in staging layer there will be no user name and detailed address columns:
+**Step 4.** Modify the existing `stg_ecommerce__users.sql` model by adding JOIN statement and formatting country names, so the JOIN will not return any null values. Note that we were asked to filter out sensitive data - in staging layer there will be no user name and detailed address columns:
 
 ```
 {{
