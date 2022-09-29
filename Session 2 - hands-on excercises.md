@@ -29,7 +29,7 @@ Moreover, there has been a request for extending the users localisation data wit
 
 ### Steps to perform:
 Your task is to:
-1. Inspect a csv file: [ISO_like_Countries-Continents.csv](https://gitlab.com/datamass-mdp-workshop/workshop-resources/-/blob/main/CSVs/ISO_like_Countries-Continents.csv) as a potential mapping table for countries and continents. Be warned! Some country names will require you attention!
+1. Inspect a csv file: [ISO_like_Countries-Continents.csv](https://github.com/getindata/gid-mdp-workshop/blob/main/CSV/ISO_like_Countries-Continents.csv) as a potential mapping table for countries and continents. Be warned! Some country names will require you attention!
 
     a. Include the csv in the pipeline.
     
@@ -74,7 +74,7 @@ Note: The solution proposed here does not stand as an one-and-only true way for 
 >-> Hint2: Or if you don't want to run the whole pipeline but the model you have just created - `dbt run --select name_of_model`
 
 ---
-**Step 1.** Locate csv file: [ISO_like_Countries-Continents.csv](https://gitlab.com/datamass-mdp-workshop/workshop-resources/-/blob/main/CSVs/ISO_like_Countries-Continents.csv) and upload it to `seeds` folder inside of you dbt project.
+**Step 1.** Locate csv file: [ISO_like_Countries-Continents.csv](https://github.com/getindata/gid-mdp-workshop/blob/main/CSV/ISO_like_Countries-Continents.csv) and upload it to `seeds` folder inside of you dbt project.
 
 >-> Hint: you can download the file into your local drive and then drag-drop it into VSCode
 
