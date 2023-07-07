@@ -30,7 +30,7 @@ If not already signed in to Gitlab, you'll be presented with a login screen:
 
 Logging with your Gitlab credentials should automatically redirect you to a newly created workspace in Jupyterlab:
 
-   <img width="600" alt="image" src="Images/Jupyterlab_first_screen.png"/>
+   <img width="600" alt="image" src="Images/jupyterlab_first_screen.png"/>
 
 ## 2. Create your repository for your dbt project in Gitlab
 
