@@ -4,7 +4,7 @@
 
 Welcome to the **GetInData Modern Data Platform** workshop - `session #1`. In this introductory tutorial you will:
 - create your JupyterLab container hosted on Kubernetes - the personal workspace for data transformation project.
-- create your working repository in Gitlab
+- create your working repository in Gitlab (if not already created as part of homework)
 - navigate through Bigquery console and familiarize with data used during the workshop
 
 For today's exercises the target environment will be Google Cloud Platform's: `BigQuery`, `JupyterLab workspace` and `VSCode` as IDE.
