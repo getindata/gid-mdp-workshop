@@ -75,6 +75,18 @@ The main rule for `dbt` is that we should avoid writing SQL code referencing dat
 
     If there were no mistakes, the summary compilation report should provide information about `2 sources` detected by `dbt`.
 
+<details>
+<summary>Solution:</summary>
+<pre>
+version: 2<br>
+sources:
+  - name: raw_data
+    tables:
+    - name: users
+</pre>
+</details>
+
+
 ## Load a seed CSV file to your data warehouse
 
 In order to calculate VAT, we need information on the applicable VAT rates in the countries where purchases were made. We do not have such data in our raw tables. What we have is a CSV file - [seed_tax_rates.csv](CSV/seed_tax_rates.csv). Insteat of loading it manualy to Bigquery, we will put it into our dbt project as a `seed` file:
@@ -150,6 +162,33 @@ In our example, for calculating VAT we need to join `order_items` with `users` t
 
     Note that sources have not been materialized like our model was. That's because they are not `dbt` entities, but a raw data already existing in our dwh.
 
+<details>
+<summary>Solution:</summary>
+<pre>
+with order_items as (
+    select * from {{ source('raw_data', 'order_items') }}
+),
+users as (
+-- fill the corresponding CTE with a proper select statement 
+-- using the {{ source }} function directing the raw_data.users table:
+    select id, country from {{ source('raw_data', 'users') }}
+)
+
+select
+    oi.id               as order_item_id,
+    oi.order_id         as order_id,
+    oi.user_id          as user_id,
+    oi.product_id       as product_id,
+    oi.status           as order_status,
+    oi.sale_price       as order_item_sale_price,
+    u.country           as user_country
+from
+    order_items as oi
+left join
+    users as u on oi.user_id = u.id
+</pre>
+</details>
+
 4. In Bigquery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data
 
     ```
@@ -163,7 +202,7 @@ In our example, for calculating VAT we need to join `order_items` with `users` t
 
 Having created our first model, we can now add tax rates to our `model_order_items_with_country` table and calculate VAT for each sales. Because this table has been created as a result of model execution (`dbt run`), we will use jinja function `{{ ref }}`. The same is for previously loaded `seed` file (the difference is we created this resource with `dbt seed` command). This will allow dbt to calculate table lineage for the pipeline we build correctly. 
 
-1. In `models` folder inside of your project folder create new file called `model_order_items_with_tax.sql`.
+1. In `models` folder inside your project folder create new file called `model_order_items_with_tax.sql`.
 
 2. Inside of the newly created file type the following SQL code, **filling in the missing lines**:
 
@@ -212,6 +251,36 @@ Having created our first model, we can now add tax rates to our `model_order_ite
     ```
 
     > Hint: There may be some data quality issues in `order_items_with_country`. If they exist, they will be passed further in downstream models.
+
+<details>
+<summary>Solution:</summary>
+<pre>
+with _order_items_with_country as (
+    select * from {{ ref( 'model_order_items_with_country' ) }}
+),
+tax_rates as (
+-- fill the corresponding CTE with a proper select statement 
+-- using the {{ ref }} function directing the seed_tax_rates entity:
+    select Country, Tax_rate from {{ ref('seed_tax_rates') }}
+)
+
+select
+    order_item_id,
+    order_id,
+    user_id,
+    product_id,
+    order_status,
+    order_item_sale_price,
+    user_country,
+    tr.Tax_Rate     as tax_rate,
+    round(order_item_sale_price * (tr.Tax_Rate / (100 + tr.Tax_Rate)), 2)      as order_items_sale_VAT
+
+from
+    _order_items_with_country as oi
+left join
+    tax_rates as tr on oi.user_country = trim(tr.Country)
+</pre>
+</details>
 
 ### Congrats!
 
