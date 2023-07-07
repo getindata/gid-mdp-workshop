@@ -294,6 +294,23 @@ The `dbt_project.yml` is a configuration file that specifies project-level setti
 
 2. **Exercise**: change materialization to `table` in for all data transformation layers defined in the project.
 
+<details>
+<summary>Solution:</summary>
+<pre>
+    models:
+      your_dbt_project_name:
+        01_staging:
+          +materialized: table
+          +schema: yourusername_hdp_workshop_01_staging
+        02_intermediate:
+          +materialized: table
+          +schema: yourusername_hdp_workshop_02_intermediate
+        03_mart:
+          +materialized: table
+          +schema: yourusername_hdp_workshop_03_mart
+</pre>
+</details>
+
 3. Execute the pipeline locally by running the `dbt run` command.
 
 You can read more about model materializations in https://docs.getdbt.com/docs/build/materializations
