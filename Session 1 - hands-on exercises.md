@@ -62,7 +62,7 @@ Normally, in order to kick-off and initialize your data transformation project, 
 
     <img width="700" alt="image" src="Images/Gitlab_project_03.png" >
 
-2. Upload the `quickstart.py` file to the root folder. Note: The file will be shared on Teams channel by the workshop leaders (or you can find it on [Gitlab](https://gitlab-frontend.home.net.pl/getindataworkshops/hdp-workshops/quickstart). 
+2. Upload the `quickstart.py` file to the root folder. Note: The file will be shared on Teams channel by the workshop leaders (or you can find it on [Gitlab](https://gitlab-frontend.home.net.pl/getindataworkshops/hdp-workshops/quickstart/-/blob/main/quickstart.py)). 
 
 3. Type the following line and replace the `<>` placeholders with your values :
 
@@ -100,7 +100,7 @@ The MDP instance we are working with during this tutorial uses `Bigquery`. In or
 
 1. Click on the following [link](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m0)
 
-2. The link will open [Google Bigquery SQL Workspace](https://cloud.google.com/bigquery/docs/introduction) for the `bdtw-mdp-workshop` project. In short - Bigquery is the enterprise data warehouse service hosted by Google. Simply speaking you can treat `project` as an equivalent for a Database. All tables, views and schemas are stored there.
+2. The link will open [Google Bigquery SQL Workspace](https://cloud.google.com/bigquery/docs/introduction) for the `ext-prj-getindev` project. In short - Bigquery is the enterprise data warehouse service hosted by Google. Simply speaking you can treat `project` as an equivalent for a Database. All tables, views and schemas are stored there.
 
 3. In BQ `tables` and `views` are stored in `schemas`. You can access them through left side navigation panel. Click on the `raw_data` schema to explore data we're going to use on this workshop. This data is a direct copy of The [Look Ecommerce data set](https://console.cloud.google.com/bigquery(cameo:product/bigquery-public-data/thelook-ecommerce)?authuser=0&project=bdtw-mdp-workshop) created by Google. 
 
