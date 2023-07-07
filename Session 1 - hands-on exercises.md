@@ -55,31 +55,39 @@ GitLab is a web-based Git repository manager that provides a complete DevOps pla
 
 Our data transformation projects are carried using `dbt`. Every personal notebook created using Jupyter Images provided by the MDP administration has its own `dbt` instance installed, along with `DP Framework` libraries and couple of other popular code editing software (like `VSCode`, `CloudBeaver` etc.). Because we run `dbt` as a part of larger framework, the project creation and initialization is controlled by `DP Command Line Interface` (reminder: `DP Framework` coordinates data transformation, data ingestion, CICD, pipeline orchestration and data catalog sync). 
 
-Normally, in order to kick-off and initialize your data transformation project, you would have to run the `dp create`, the CLI script would then ask you a series of question regarding your project, dwh, schedule interval, ingestion sync etc. As an analytics engineer who went through the onboarding process you would be able to set-up the project without an effort. However, for this workshop we prepared a `quickstart.py` script that creates and initializes the dbt project for you.
+Normally, in order to kick-off and initialize your data transformation project, you would have to run the `dp create`, the CLI script would then ask you a series of question regarding your project, dwh, schedule interval, ingestion sync etc. As an analytics engineer who went through the onboarding process you would be able to set-up the project without an effort. However, for this workshop we prepared a `quickstart.py` script runs these commands in a proper order and ask you some questions:
 
-1. Navigate to your [Vertex AI notebook](https://console.cloud.google.com/vertex-ai/workbench/user-managed?authuser=0&project=bdtw-mdp-workshop), click on terminal:
+1. Navigate to your [JupyterLab notebook](https://jupyter-dev.hdp.home.net.pl/), click on terminal:
 
     <img width="700" alt="image" src="Images/Gitlab_project_03.png" >
 
-2. Upload the `quickstart.py` file to the root folder. Note: The file will be shared on Slack channel by the workshop leaders. 
+2. Upload the `quickstart.py` file to the root folder. Note: The file will be shared on Teams channel by the workshop leaders (or you can find it on [Gitlab](https://gitlab-frontend.home.net.pl/getindataworkshops/hdp-workshops/quickstart). 
 
-3. Type the following line:
+3. Type the following line and replace the `<>` placeholders with your values :
 
     ```
-    python quickstart.py gitlab_username gitlab_email gitlab_repository_name
+    python quickstart.py <gitlab_username> <gitlab_email> <gitlab_repository_name>
     ```
+   
+   i.e.
+
+   ```
+   python quickstart.py jakub.szafran jakub.szafran@getindata.com jakub-szafran-project
+   ```
 
     <img width="900" alt="image" src="Images/dbt_quickstart_01.png" > 
 
     The script will setup your personal gitlab profile, clone your repository and initialize your dbt project.
+ 
+    <img src="Images/quickstart_output.png" alt="image" width="900"/>
 
-    a) Git will ask for your `https://gitlab.com` credentials: `Username` and Gitlab `password`. Your Username can be found on top-right corner of the Gitlab page (under the icon of your profile):
+    DP will start with asking you a few questions:
 
-     <img width="700" alt="image" src="Images/Gitlab_project_05.png" > 
+   - `username` - variable used by DP CLI to create a private schema/dataset in BigQuery (so you could see the results of your queries ran locally)
+   - `Name of the project` - used as DBT project's name. It is also used by Airflow to name the DAG created from your project.
+   - `Name of the dataset` - name of dataset that will be created/updated when your DAG is executed by Airflow
 
-    b) If you're logging to `Gitlab` with your `Google Account`, and you haven't created Gitlab password (or simply don't remember it), you can do it (or reset it) in the profile editor. For that, click on your `User Profile` icon (top-right corner of the Gitlab page) and go to `Edit profile` page. On `User Settings` menu on the left side of the screen, choose `Password`, click on `Save password` / `I forgot my password` and proceed with the further instructions.
-
-    <img width="700" alt="image" src="Images/Gitlab_project_06.png" >  
+   After answering the questions, rest of the steps should be executed automatically. If you'll see a conflict message, just press `Y` to overwrite (the conflict you see in the screenshot occurred because I initialized my repository with README)
 
 4. Click `+` icon on top-left side of your notebook screen and enter `VSCode`. You are now ready to explore your freshly created (and yet empty) dbt project.
 
@@ -89,7 +97,7 @@ BigQuery is a fully-managed cloud data warehouse service that enables users to s
 
 The MDP instance we are working with during this tutorial uses `Bigquery`. In order to familiarize yourself with the DWH, proceed with the following steps:
 
-1. Click on the following [link](https://console.cloud.google.com/bigquery?authuser=0&project=bdtw-mdp-workshop&ws=!1m0)
+1. Click on the following [link](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m0)
 
 2. The link will open [Google Bigquery SQL Workspace](https://cloud.google.com/bigquery/docs/introduction) for the `bdtw-mdp-workshop` project. In short - Bigquery is the enterprise data warehouse service hosted by Google. Simply speaking you can treat `project` as an equivalent for a Database. All tables, views and schemas are stored there.
 
