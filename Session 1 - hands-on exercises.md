@@ -3,61 +3,33 @@
 ## Data Pipelines CLI: Setting up environment and exploring dataset
 
 Welcome to the **GetInData Modern Data Platform** workshop - `session #1`. In this introductory tutorial you will:
-- create your VertexAI notebook - the personal workspace for data transformation project.
-- deploy your dbt project with [data-pipelines-cli](https://data-pipelines-cli.readthedocs.io/en/latest/index.html) tool in `Vertex AI` environment
+- create your JupyterLab container hosted on Kubernetes - the personal workspace for data transformation project.
 - create your working repository in Gitlab
 - navigate through Bigquery console and familiarize with data used during the workshop
 
-For today's exercises the target environment will be Google Cloud Platform's: `BigQuery`, `Vertex AI Managed Notebook` and `VSCode` as IDE.
+For today's exercises the target environment will be Google Cloud Platform's: `BigQuery`, `JupyterLab workspace` and `VSCode` as IDE.
 
-This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
+This tutorial uses our DataOps JupyterLab image jupyterhub-1.5.0.
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
 
 **Note**: if you're new to data-pipelines-cli and want to know more about the library, check the [documentation](https://data-pipelines-cli.readthedocs.io/en/latest/index.html).
 
 # Exercise
 
-## Before you start
-
-To proceed with this tutorial, you will need a Google account. If you do not have one or are unwilling to use your personal or corporate Gmail address, please create a new Google account dedicated to this workshop (e.g., name.surname.bdtw.mdp.workshop@gmail.com) and send its name to the workshop leaders. Afterward, you will receive an invitation to the Gitlab group and workshop Slack channel where we will share additional information, links, or quick fixes related to the workshop.
 
 ## 1. Setup your working environment
 
-In Modern Data Platform by GID, the `VertexAI` user-managed workbook is a main workspace for an analytics engineer. `Vertex AI notebook` is a web-based platform primarily designed for creating, editing, and running machine learning models on Google Cloud Platform. However, the scalable environment of Vertex AI notebook has also proved useful for developing computationally lightweight data transformation projects. It runs on top of a virtual machine instance on Google Cloud Platform. When you create a notebook instance, Google Cloud Platform provisions a virtual machine for you and installs all the necessary software and dependencies. You can then access the notebook instance using a web browser and start coding without having to worry about the underlying infrastructure.
+In Modern Data Platform by GID, the `JupyterLab` is a main workspace for an analytics engineer. Workspace container is created from a Dockerfile that contains pre-installed tools required for working with data transformations projects (`dbt`, `data_pipelines_cli`, `VSCode` as code editor/IDE). Thanks to that, you don't have to worry about managing dependencies (things like installing appropriate Python version on your local computer and any other packages required for the project).
 
-1. Go to `Vertex AI`: [here](https://console.cloud.google.com/vertex-ai/workbench/list/instances?referrer=search&project=bdtw-mdp-workshop&supportedpurview=project).
+1. Go to `JupyterLab` instance: [here](https://jupyter-dev.hdp.home.net.pl/hub/login)
+2. Click on `Sign in with GitLab` button
+If not already signed in to Gitlab, you'll be presented with a login screen:
 
-3. Click on `New Notebook` located in the top bar and then `Customize...`
+   <img width="600" alt="image" src="Images/gitlab_ee_login.png"/>
 
-   <img width="600" alt="image" src="Images/VAI_acc_01.png" >
+Logging with your Gitlab credentials should automatically redirect you to a newly created workspace in Jupyterlab:
 
-3. Type in notebook name (preferably your first and last name, example: `john-smith-workshops`) and press continue.
-
-    <img width="600" alt="image" src="Images/VAI_acc_02.png" >
-   
-5. In environment section, choose `Debian 10`, then `Custom container`... 
-
-    <img width="700" alt="image" src="Images/VAI_acc_03.png" >
-
-    ...and provide a link to the Data Pipelines CLI image: 
-    ```
-    gcr.io/getindata-images-public/jupyterlab-dataops@sha256:12e217ab88f823308214203628bfe72b0ad233aace3c982efdac023184eb2f79
-    ```
-
-    <img width="700" alt="image" src="Images/VAI_acc_04.png" >
-
-6. In machine configuration section, choose `n1-standard-1 machine 1vCPU/3.75GB RAM (~0.044 USD / hour)`
-
-    <img width="700" alt="image" src="Images/VAI_acc_05.png" >
-
-7. Leave everything else on default.
-8. Click on `Create`
-9. Wait until it spins up correctly and click on `Open JupyterLab`
-
-    <img width="700" alt="image" src="Images/VAI_acc_06.png" >
-
-10. You can start exploring your personal workspace. 
-    Note: CloudBeaver (web browser version of Dbeaver, database manager and browser tool) has been pre-installed, however, at this point it is not supported within the notebooks due to authorisation restrictions. 
+   <img width="600" alt="image" src="Images/Jupyterlab_first_screen.png"/>
 
 ## 2. Create your repository for your dbt project in Gitlab
 
