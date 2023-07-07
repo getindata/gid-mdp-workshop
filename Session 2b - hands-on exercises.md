@@ -10,7 +10,7 @@ By the end of this tutorial, you will learn how to:
 - create and apply your custom generic tests
 - add column and table level descriptions to your dbt resources
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
+Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `JupyterLab Workspace`, `VSCode` as IDE. 
 
 This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).

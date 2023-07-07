@@ -102,7 +102,7 @@ The MDP instance we are working with during this tutorial uses `Bigquery`. In or
 
 2. The link will open [Google Bigquery SQL Workspace](https://cloud.google.com/bigquery/docs/introduction) for the `ext-prj-getindev` project. In short - Bigquery is the enterprise data warehouse service hosted by Google. Simply speaking you can treat `project` as an equivalent for a Database. All tables, views and schemas are stored there.
 
-3. In BQ `tables` and `views` are stored in `schemas`. You can access them through left side navigation panel. Click on the `raw_data` schema to explore data we're going to use on this workshop. This data is a direct copy of The [Look Ecommerce data set](https://console.cloud.google.com/bigquery(cameo:product/bigquery-public-data/thelook-ecommerce)?authuser=0&project=bdtw-mdp-workshop) created by Google. 
+3. In BQ `tables` and `views` are stored in `schemas`. You can access them through left side navigation panel. Click on the `raw_data` schema to explore data we're going to use on this workshop. This data is a direct copy of The [Look Ecommerce data set](https://console.cloud.google.com/bigquery(cameo:product/bigquery-public-data/thelook-ecommerce)?authuser=0&project=ext-prj-getindev) created by Google. 
 
     <img width="900" alt="image" src="Images/BQ_acc_01.png" >
 
@@ -116,8 +116,8 @@ The MDP instance we are working with during this tutorial uses `Bigquery`. In or
 
     ```
     SELECT oi.product_id as product_id, p.name as product_name, p.category as product_category, count(*) as num_of_orders
-    FROM `bdtw-mdp-workshop.raw_data.products` as p 
-    JOIN `bdtw-mdp-workshop.raw_data.order_items` as oi
+    FROM `ext-prj-getindev.raw_data.products` as p 
+    JOIN `ext-prj-getindev.raw_data.order_items` as oi
     ON p.id = oi.product_id
     GROUP BY 1,2,3
     ORDER BY num_of_orders DESC

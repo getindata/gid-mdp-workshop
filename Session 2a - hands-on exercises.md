@@ -9,7 +9,7 @@ By the end of this tutorial, you will learn how to:
 - load static seed data to the data warehouse with the use of `dbt seed`
 - create a simple transformation and execute it using `dbt run`
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
+Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `JupyterLab workspace`, `VSCode` as IDE. 
 
 This tutorial uses our DataOps JupyterLab image gcp-1.5.0..
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
@@ -24,11 +24,11 @@ The following exercises will get you through the basic concepts of dbt. For that
 
 ## Defining sources in `dbt`.
 
-Sales data can be found in `raw_data.order_items` table. You can preview schema and data itself by inspecting the [`order_items`](https://console.cloud.google.com/bigquery?authuser=0&project=bdtw-mdp-workshop&ws=!1m5!1m4!4m3!1sbdtw-mdp-workshop!2sraw_data!3sorder_items) column in Bigquery. As tax rate can differ depending on place the purchase was made we need to extract information about users` country. This can be found in the [users](https://console.cloud.google.com/bigquery?authuser=0&project=bdtw-mdp-workshop&ws=!1m5!1m4!4m3!1sbdtw-mdp-workshop!2sraw_data!3susers) table.
+Sales data can be found in `raw_data.order_items` table. You can preview schema and data itself by inspecting the [`order_items`](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m5!1m4!4m3!1sext-prj-getindev!2sraw_data!3sorder_items) column in Bigquery. As tax rate can differ depending on place the purchase was made we need to extract information about users` country. This can be found in the [users](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m5!1m4!4m3!1sext-prj-getindev!2sraw_data!3susers) table.
 
 The main rule for `dbt` is that we should avoid writing SQL code referencing datasets and tables stored in `dwh` directly. Instead we should use proper referencing functions `dbt` comes with. So, in order to introduce raw data in our `dbt` project we should define it in form of `yaml` file. To create sources definition follow the instructions:
 
-1. Open your VertexAI notebook and launch VSCode.
+1. Open your JupyterLab workspace and launch VSCode.
 
 2. Navigate to your project folder and locate `models` folder.
 
