@@ -23,6 +23,7 @@ In Modern Data Platform by GID, the `JupyterLab` is a main workspace for an anal
 
 1. Go to `JupyterLab` instance: [here](https://jupyter-dev.hdp.home.net.pl/hub/login)
 2. Click on `Sign in with GitLab` button
+
 If not already signed in to Gitlab, you'll be presented with a login screen:
 
    <img width="600" alt="image" src="Images/gitlab_ee_login.png"/>
