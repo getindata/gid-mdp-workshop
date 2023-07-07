@@ -280,7 +280,7 @@ The `dbt_project.yml` is a configuration file that specifies project-level setti
 
     ```
     models:
-      yourusername_project:
+      your_dbt_project_name:
         01_staging:
           +materialized: view
           +schema: yourusername_hdp_workshop_01_staging
