@@ -10,7 +10,7 @@ By the end of this tutorial, you will learn how to:
 - publish your work to DEV using Git and CICD
 - review the pipeline execution results in data catalog and connect data with a BI tool
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
+Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `JupyterLab workspace`, `VSCode` as IDE. 
 
 This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
@@ -280,16 +280,16 @@ The `dbt_project.yml` is a configuration file that specifies project-level setti
 
     ```
     models:
-      michal_soszko_project:
+      yourusername_project:
         01_staging:
           +materialized: view
-          +schema: msoszko_bdtw_workshop_01_staging
+          +schema: yourusername_hdp_workshop_01_staging
         02_intermediate:
           +materialized: view
-          +schema: msoszko_bdtw_workshop_02_intermediate
+          +schema: yourusername_hdp_workshop_02_intermediate
         03_mart:
           +materialized: table
-          +schema: msoszko_bdtw_workshop_03_mart
+          +schema: yourusername_hdp_workshop_03_mart
     ```
 
 2. **Exercise**: change materialization to `table` in for all data transformation layers defined in the project.
@@ -406,7 +406,7 @@ In order to commit your work to remote you can use either command line or VSCode
 
 After pushing your local changes to remote repository you will be able to inspect the status of the CICD phase. In order to do so:
 
-1. go to our gitlab group: https://gitlab.com/bdtw-mdp-workshop and locate your repository. 
+1. go to our gitlab group: https://gitlab-frontend.home.net.pl/getindataworkshops/hdp-workshops/ and locate your repository. 
 
 2. In your repository page locate the CICD pipeline status indicator. You can inspect details by clicking on the `succes` or `fail` icon 
 
@@ -437,7 +437,7 @@ For connecting your "prod" tables with the BI tool, follow the instructions prov
 
 2. Add a blank report.
 
-3. Use `Google connectors`: `BigQuery` and add our project 'bdtw-mdp-workshop`.
+3. Use `Google connectors`: `BigQuery` and add our project 'ext-prj-getindev`.
 
 4. Choose your dataset, `username_03_mart` and pick up the `dm_order_items` table, finish by clicking `Add`.
 
