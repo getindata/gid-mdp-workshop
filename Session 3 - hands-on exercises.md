@@ -9,8 +9,8 @@ By the end of this tutorial, you will learn how to:
 - apply jinja macro in your SQL code
 - publish your work to DEV using Git and CICD
 - review the pipeline execution results in data catalog and connect data with a BI tool
-
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `JupyterLab workspace`, `VSCode` as IDE. 
+ 
+Target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (on-premise).
 
 This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
@@ -79,7 +79,7 @@ A `Staging area` is a transformation layer where data is cleaned (by formating, 
     
     > Hint: You can choose whatever column naming convention you prefer.
 
-    > Hint2: Use Bigquery to check schema for `raw_data.users` table.
+    > Hint2: Use BigQuery to check schema for `raw_data.users` table.
 
 <details>
 <summary>Preview example of the resulting SQL statement</summary>
@@ -178,7 +178,7 @@ left join
     dbt run --select +int_order_items_with_country
     ```
 
-5. If the pipeline succeeds you can preview resulting views in Bigquery.
+5. If the pipeline succeeds you can preview resulting views in BigQuery.
 
 After performing steps 1-5 your project structure should now look similar to the example below:
 
@@ -264,7 +264,7 @@ models:
     dbt run --select +dm_order_items
     ```
 
-5. If the pipeline succeeds you can remove all SQL and YAML files from the `models` main folder, leaving only models stored in layer subdirectories. Also, you can preview resulting views in Bigquery. 
+5. If the pipeline succeeds you can remove all SQL and YAML files from the `models` main folder, leaving only models stored in layer subdirectories. Also, you can preview resulting views in BigQuery. 
 
 After performing steps 1-5 your project structure should now look similar to the example below:
 
@@ -450,11 +450,11 @@ For Airflow and Data Catalog, you will receive corresponding links through the w
 
 For connecting your "prod" tables with the BI tool, follow the instructions provided below:
 
-1. Enter Looker studio navigation panel by clicking on this [link](https://lookerstudio.google.com/u/1/navigation/reporting). Note, you need to be logged in your gmail account to get access to our Bigquery datasets.
+1. Enter Looker studio navigation panel by clicking on this [link](https://lookerstudio.google.com/u/1/navigation/reporting). Note, you need to be logged in your gmail account to get access to our BigQuery datasets.
 
 2. Add a blank report.
 
-3. Use `Google connectors`: `BigQuery` and add our project 'ext-prj-getindev`.
+3. Use `Google connectors`: `BigQuery` and add our project `ext-prj-getindev`.
 
 4. Choose your dataset, `username_03_mart` and pick up the `dm_order_items` table, finish by clicking `Add`.
 

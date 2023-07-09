@@ -9,7 +9,7 @@ By the end of this tutorial, you will learn how to:
 - load static seed data to the data warehouse with the use of `dbt seed`
 - create a simple transformation and execute it using `dbt run`
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `JupyterLab workspace`, `VSCode` as IDE. 
+Target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (on-premise). 
 
 This tutorial uses our DataOps JupyterLab image gcp-1.5.0..
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
@@ -24,7 +24,7 @@ The following exercises will get you through the basic concepts of dbt. For that
 
 ## Defining sources in `dbt`.
 
-Sales data can be found in `raw_data.order_items` table. You can preview schema and data itself by inspecting the [`order_items`](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m5!1m4!4m3!1sext-prj-getindev!2sraw_data!3sorder_items) column in Bigquery. As tax rate can differ depending on place the purchase was made we need to extract information about users` country. This can be found in the [users](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m5!1m4!4m3!1sext-prj-getindev!2sraw_data!3susers) table.
+Sales data can be found in `raw_data.order_items` table. You can preview schema and data itself by inspecting the [`order_items`](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m5!1m4!4m3!1sext-prj-getindev!2sraw_data!3sorder_items) column in BigQuery. As tax rate can differ depending on place the purchase was made we need to extract information about users` country. This can be found in the [users](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m5!1m4!4m3!1sext-prj-getindev!2sraw_data!3susers) table.
 
 The main rule for `dbt` is that we should avoid writing SQL code referencing datasets and tables stored in `dwh` directly. Instead we should use proper referencing functions `dbt` comes with. So, in order to introduce raw data in our `dbt` project we should define it in form of `yaml` file. To create sources definition follow the instructions:
 
@@ -48,6 +48,7 @@ The main rule for `dbt` is that we should avoid writing SQL code referencing dat
     Here, you defined source `name`, which normaly is the same as the `schema` name in your data warehouse (in our example - `raw_data`). Under the `table / name` field you described name of the raw table, which in this case is `order_items`.
 
     Find more information about dbt sources in dbt documentation: https://docs.getdbt.com/docs/build/sources
+**Hint**: defining sources does not have to be a manual chore - check-out a popular [dbt-codegen](https://hub.getdbt.com/dbt-labs/codegen/latest/) extension that supports [automation of this process](https://github.com/dbt-labs/dbt-codegen/tree/0.10.0/#generate_source-source).
 
 5. In order to check whether your source has been defined correctly (note that yaml files are whitespace-sensitive):
 
@@ -89,7 +90,7 @@ sources:
 
 ## Load a seed CSV file to your data warehouse
 
-In order to calculate VAT, we need information on the applicable VAT rates in the countries where purchases were made. We do not have such data in our raw tables. What we have is a CSV file - [seed_tax_rates.csv](CSV/seed_tax_rates.csv). Insteat of loading it manualy to Bigquery, we will put it into our dbt project as a `seed` file:
+In order to calculate VAT, we need information on the applicable VAT rates in the countries where purchases were made. We do not have such data in our raw tables. What we have is a CSV file - [seed_tax_rates.csv](CSV/seed_tax_rates.csv). Insteat of loading it manualy to BigQuery, we will put it into our dbt project as a `seed` file:
 
 1. Upload the [seed_tax_rates.csv](CSV/seed_tax_rates.csv) to `seeds` folder in your dbt project.
 
@@ -105,7 +106,7 @@ In order to calculate VAT, we need information on the applicable VAT rates in th
     
     This is the first resource that has been created with dbt. Table `seed_tax_rates` can now be viewed inside of your personal working schema. 
     
-3. In Bigquery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data.
+3. In BigQuery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data.
 
     ```
     select *
@@ -189,7 +190,7 @@ left join
 </pre>
 </details>
 
-4. In Bigquery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data
+4. In BigQuery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data
 
     ```
     select *
@@ -243,7 +244,7 @@ Having created our first model, we can now add tax rates to our `model_order_ite
 
     Now, in the output dbt should execute 2 models. First, `order_items_with_country` and then `order_items_with_tax`. Note that `seed_tax_rates` CSV has not been executed as seed files are loaded into dwh with different command (`dbt seed`). 
 
-4. In Bigquery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data.
+4. In BigQuery inspect your freshly created table within your `private_working_schema` by examining the schema and viewing data.
 
     ```
     select *

@@ -5,9 +5,9 @@
 Welcome to the **GetInData Modern Data Platform** workshop - `session #1`. In this introductory tutorial you will:
 - create your JupyterLab container hosted on Kubernetes - the personal workspace for data transformation project.
 - create your working repository in Gitlab (if not already created as part of homework)
-- navigate through Bigquery console and familiarize with data used during the workshop
+- navigate through BigQuery console and familiarize with data used during the workshop
 
-For today's exercises the target environment will be Google Cloud Platform's: `BigQuery`, `JupyterLab workspace` and `VSCode` as IDE.
+For today's exercises the target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (on-premise).
 
 This tutorial uses our DataOps JupyterLab image jupyterhub-1.5.0.
 For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
@@ -84,23 +84,23 @@ Normally, in order to kick-off and initialize your data transformation project, 
 
     DP will start with asking you a few questions:
 
-   - `username` - variable used by DP CLI to create a private schema/dataset in BigQuery (so you could see the results of your queries ran locally)
-   - `Name of the project` - used as DBT project's name. It is also used by Airflow to name the DAG created from your project.
+   - `username` - variable used by DP CLI to create a private schema/dataset in BigQuery (so you could see the results of your queries run locally), suggestion: `name_surname` (e.g. `jakub_szafran`)
+   - `Name of the project` - used as dbt project's name. It is also used by Airflow to name the DAG created from your project.
    - `Name of the dataset` - name of dataset that will be created/updated when your DAG is executed by Airflow
 
    After answering the questions, rest of the steps should be executed automatically. If you'll see a conflict message, just press `Y` to overwrite (the conflict you see in the screenshot occurred because I initialized my repository with README)
 
 4. Click `+` icon on top-left side of your notebook screen and enter `VSCode`. You are now ready to explore your freshly created (and yet empty) dbt project.
 
-## 4. Access Bigquery Project
+## 4. Access BigQuery Project
 
-BigQuery is a fully-managed cloud data warehouse service that enables users to store, analyze, and query large datasets using SQL-like syntax. It is part of the Google Cloud Platform and can handle petabyte-scale datasets with high performance and low latency. BigQuery is designed to be scalable, fast, and easy to use, and it supports a variety of data formats and integrations with other GCP services. It allows users to run complex analytical queries on large datasets using a familiar SQL interface, without having to worry about the underlying infrastructure.
+BigQuery (sometimes abbreviated as BQ) is a fully-managed cloud data warehouse service that enables users to store, analyze, and query large datasets using SQL-like syntax. It is part of the Google Cloud Platform and can handle petabyte-scale datasets with high performance and low latency. BigQuery is designed to be scalable, fast, and easy to use, and it supports a variety of data formats and integrations with other GCP services. It allows users to run complex analytical queries on large datasets using a familiar SQL interface, without having to worry about the underlying infrastructure.
 
-The MDP instance we are working with during this tutorial uses `Bigquery`. In order to familiarize yourself with the DWH, proceed with the following steps:
+The MDP instance we are working with during this tutorial uses `BigQuery`. In order to familiarize yourself with the DWH, proceed with the following steps:
 
 1. Click on the following [link](https://console.cloud.google.com/bigquery?authuser=0&project=ext-prj-getindev&ws=!1m0)
 
-2. The link will open [Google Bigquery SQL Workspace](https://cloud.google.com/bigquery/docs/introduction) for the `ext-prj-getindev` project. In short - Bigquery is the enterprise data warehouse service hosted by Google. Simply speaking you can treat `project` as an equivalent for a Database. All tables, views and schemas are stored there.
+2. The link will open [Google BigQuery SQL Workspace](https://cloud.google.com/bigquery/docs/introduction) for the `ext-prj-getindev` project. In short - BigQuery is the enterprise data warehouse service hosted by Google. Simply speaking you can treat `project` as an equivalent for a Database. All tables, views and schemas are stored there.
 
 3. In BQ `tables` and `views` are stored in `schemas`. You can access them through left side navigation panel. Click on the `raw_data` schema to explore data we're going to use on this workshop. This data is a direct copy of The [Look Ecommerce data set](https://console.cloud.google.com/bigquery(cameo:product/bigquery-public-data/thelook-ecommerce)?authuser=0&project=ext-prj-getindev) created by Google. 
 
@@ -112,7 +112,7 @@ The MDP instance we are working with during this tutorial uses `Bigquery`. In or
 
     <img width="700" alt="image" src="Images/BQ_acc_02.png" >
 
-    Copy-paste the following query into the SQL Editor and press `Run`. Please note that in Bigquery you reference a table from a specific project using backquote marks:
+    Copy-paste the following query into the SQL Editor and press `Run`. Please note that in BigQuery you reference a table from a specific project using backquote marks:
 
     ```
     SELECT oi.product_id as product_id, p.name as product_name, p.category as product_category, count(*) as num_of_orders
