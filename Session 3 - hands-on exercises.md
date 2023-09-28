@@ -10,10 +10,9 @@ By the end of this tutorial, you will learn how to:
 - publish your work to DEV using Git and CICD
 - review the pipeline execution results in data catalog and connect data with a BI tool
  
-Target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (on-premise).
+Target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (GKE).
 
-This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
-For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
+
 
 
 # Tutorials
