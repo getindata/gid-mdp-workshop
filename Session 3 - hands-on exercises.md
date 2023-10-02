@@ -282,13 +282,13 @@ The `dbt_project.yml` is a configuration file that specifies project-level setti
       your_dbt_project_name:
         01_staging:
           +materialized: view
-          +schema: yourusername_hdp_workshop_01_staging
+          +schema: yourusername_workshop_01_staging
         02_intermediate:
           +materialized: view
-          +schema: yourusername_hdp_workshop_02_intermediate
+          +schema: yourusername_workshop_02_intermediate
         03_mart:
           +materialized: table
-          +schema: yourusername_hdp_workshop_03_mart
+          +schema: yourusername_workshop_03_mart
     ```
 
 2. **Exercise**: change materialization to `table` in for all data transformation layers defined in the project.
@@ -300,13 +300,13 @@ The `dbt_project.yml` is a configuration file that specifies project-level setti
       your_dbt_project_name:
         01_staging:
           +materialized: table
-          +schema: yourusername_hdp_workshop_01_staging
+          +schema: yourusername_workshop_01_staging
         02_intermediate:
           +materialized: table
-          +schema: yourusername_hdp_workshop_02_intermediate
+          +schema: yourusername_workshop_02_intermediate
         03_mart:
           +materialized: table
-          +schema: yourusername_hdp_workshop_03_mart
+          +schema: yourusername_workshop_03_mart
 </pre>
 </details>
 
@@ -422,9 +422,9 @@ In order to commit your work to remote you can use either command line or VSCode
 
 After pushing your local changes to remote repository you will be able to inspect the status of the CICD phase. In order to do so:
 
-1. go to our gitlab group: https://gitlab-frontend.home.net.pl/getindataworkshops/hdp-workshops/ and locate your repository. 
+1. go to our gitlab group: https://gitlab.com/bdtw-mdp-workshop and locate your repository. 
 
-2. In your repository page locate the CICD pipeline status indicator. You can inspect details by clicking on the `succes` or `fail` icon 
+2. In your repository page locate the CICD pipeline status indicator. You can inspect details by clicking on the `success` or `fail` icon 
 
     <img width="700" alt="image" src="Images/gitlab_commit_03.png" >
 
