@@ -10,16 +10,14 @@ By the end of this tutorial, you will learn how to:
 - create and apply your custom generic tests
 - add column and table level descriptions to your dbt resources
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
+Target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (GKE).
 
-This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
-For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
 
 # Tutorials
 
 ## Introduction
 
-In dbt test is a select statement representing assertion about your models. Tests are constructed in a way that they fail whenever SQL statement returns any record. So, for example, if we test a column for a presence of null values, we will write a query that returns rows where the null value is present. If the output of the query is empty - no records were found, the test will pass, and thus we know there are no nulls in our column. In the case where the query returns records (rows, where tested column is nullified) - test fails.
+In dbt test is a select statement representing assertion about your models. Tests are constructed in a way that they fail whenever SQL statement returns any record. So, for example, if we test a column for a presence of `null` values, we will write a query that returns rows where the `null` value is present. If the output of the query is empty - no records were found, the test will pass, and thus we know there are no nulls in our column. In the case where the query returns records (rows, where tested column is nullified) - test fails.
 You can put a test on every dbt resource: sources, seeds, models and snapshots.
 
 ## Create and apply custom singular test
@@ -75,9 +73,34 @@ For better understanding we will first create a custom singular test and apply i
 5. The task: Think of your own custom-made singular test, create the SQL file and verify if it works correctly in a way presented in the example above. Note that you can apply tests for models as well as for seeds or sources, just remember to use proper referencing functions!
 
     > Example 1: An example of such assertion could be that there should be no refunds present in the sales log (sale price is always > 0)
+   
+    <details>
+    <summary>Solution:</summary>
+    <pre>
+
+    -- tests/assertion_there_are_no_refunds_in_sales_log.sql
+
+    select order_item_id
+    from {{ ref('model_order_items_with_tax') }}
+    where order_item_sale_price < 0
+
+    </pre>
+    </details>
+
 
     > Example 2: Write a custom test that checks whether there are country names with additional whitespaces in our `seed_tax_rate` table.
 
+
+      <details>
+      <summary>Solution:</summary>
+      <pre>
+      -- tests/assertion_there_are_no_extra_spaces_in_countries_names_in_tax_rates.sql
+
+      select * 
+      from {{ ref('seed_tax_rates') }}
+      where country <> trim(country)
+      </pre>
+      </details>
 
 ## Apply built-in `generic test` to your dbt resources
 
@@ -128,8 +151,42 @@ Let's put some tests to `model_order_items_with_tax`.
 ### Exercise
 1. Check the docs for generic `accepted_values` test in https://docs.getdbt.com/docs/build/tests#generic-tests and apply it on `order_status` column. Values stored in this columns should be `Shipped`, `Complete`, `Cancelled`, `Processing` and `Returned` only, nulls are not allowed.
 
+    <details>
+    <summary>Solution:</summary>
+    <pre>
+    version: 2<br><br>
+    models:
+    - name: model_order_items_with_tax<br>
+      columns:
+      - name: order_item_id
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['Shipped', 'Complete', 'Cancelled', 'Processing', 'Returned']
+
+    </pre>
+    </details>
+
 2. Experiment and add couple more built-in generic tests to other resources in your project. If you decide to test seeds, check the documentation (https://docs.getdbt.com/reference/seed-properties) to learn more about about seeds YAML properties.
 
+    <details>
+    <summary>Example solution (testing seeds):</summary>
+    <pre>
+    -- models/schema.yml <br>
+    version: 2 <br><br>
+    seeds:
+    - name: seed_tax_rates<br>
+      columns:
+        - name: Country
+          tests:
+            - not_null
+            - unique
+
+    </pre>
+    </details>
 
 ## Create and apply your custom generic test
 

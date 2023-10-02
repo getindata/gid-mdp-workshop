@@ -9,11 +9,10 @@ By the end of this tutorial, you will learn how to:
 - apply jinja macro in your SQL code
 - publish your work to DEV using Git and CICD
 - review the pipeline execution results in data catalog and connect data with a BI tool
+ 
+Target environment will be: `BigQuery & Looker Studio` (GCP), `JupyterLab workspace` with `VSCode` as IDE (GKE).
 
-Target environment will be Google Cloud Platform's: `BigQuery & Data Studio`, `Vertex AI Managed Notebook`, `VSCode` as IDE. 
 
-This tutorial uses our DataOps JupyterLab image gcp-1.5.0.
-For more versions and images check out [our public repo](https://github.com/getindata/jupyter-images/tree/master/jupyterlab-dataops).
 
 
 # Tutorials
@@ -79,7 +78,7 @@ A `Staging area` is a transformation layer where data is cleaned (by formating, 
     
     > Hint: You can choose whatever column naming convention you prefer.
 
-    > Hint2: Use Bigquery to check schema for `raw_data.users` table.
+    > Hint2: Use BigQuery to check schema for `raw_data.users` table.
 
 <details>
 <summary>Preview example of the resulting SQL statement</summary>
@@ -178,7 +177,7 @@ left join
     dbt run --select +int_order_items_with_country
     ```
 
-5. If the pipeline succeeds you can preview resulting views in Bigquery.
+5. If the pipeline succeeds you can preview resulting views in BigQuery.
 
 After performing steps 1-5 your project structure should now look similar to the example below:
 
@@ -264,7 +263,7 @@ models:
     dbt run --select +dm_order_items
     ```
 
-5. If the pipeline succeeds you can remove all SQL and YAML files from the `models` main folder, leaving only models stored in layer subdirectories. Also, you can preview resulting views in Bigquery. 
+5. If the pipeline succeeds you can remove all SQL and YAML files from the `models` main folder, leaving only models stored in layer subdirectories. Also, you can preview resulting views in BigQuery. 
 
 After performing steps 1-5 your project structure should now look similar to the example below:
 
@@ -280,19 +279,36 @@ The `dbt_project.yml` is a configuration file that specifies project-level setti
 
     ```
     models:
-      michal_soszko_project:
+      your_dbt_project_name:
         01_staging:
           +materialized: view
-          +schema: msoszko_bdtw_workshop_01_staging
+          +schema: yourusername_hdp_workshop_01_staging
         02_intermediate:
           +materialized: view
-          +schema: msoszko_bdtw_workshop_02_intermediate
+          +schema: yourusername_hdp_workshop_02_intermediate
         03_mart:
           +materialized: table
-          +schema: msoszko_bdtw_workshop_03_mart
+          +schema: yourusername_hdp_workshop_03_mart
     ```
 
 2. **Exercise**: change materialization to `table` in for all data transformation layers defined in the project.
+
+<details>
+<summary>Solution:</summary>
+<pre>
+    models:
+      your_dbt_project_name:
+        01_staging:
+          +materialized: table
+          +schema: yourusername_hdp_workshop_01_staging
+        02_intermediate:
+          +materialized: table
+          +schema: yourusername_hdp_workshop_02_intermediate
+        03_mart:
+          +materialized: table
+          +schema: yourusername_hdp_workshop_03_mart
+</pre>
+</details>
 
 3. Execute the pipeline locally by running the `dbt run` command.
 
@@ -406,7 +422,7 @@ In order to commit your work to remote you can use either command line or VSCode
 
 After pushing your local changes to remote repository you will be able to inspect the status of the CICD phase. In order to do so:
 
-1. go to our gitlab group: https://gitlab.com/bdtw-mdp-workshop and locate your repository. 
+1. go to our gitlab group: https://gitlab-frontend.home.net.pl/getindataworkshops/hdp-workshops/ and locate your repository. 
 
 2. In your repository page locate the CICD pipeline status indicator. You can inspect details by clicking on the `succes` or `fail` icon 
 
@@ -433,11 +449,11 @@ For Airflow and Data Catalog, you will receive corresponding links through the w
 
 For connecting your "prod" tables with the BI tool, follow the instructions provided below:
 
-1. Enter Looker studio navigation panel by clicking on this [link](https://lookerstudio.google.com/u/1/navigation/reporting). Note, you need to be logged in your gmail account to get access to our Bigquery datasets.
+1. Enter Looker studio navigation panel by clicking on this [link](https://lookerstudio.google.com/u/1/navigation/reporting). Note, you need to be logged in your gmail account to get access to our BigQuery datasets.
 
 2. Add a blank report.
 
-3. Use `Google connectors`: `BigQuery` and add our project 'bdtw-mdp-workshop`.
+3. Use `Google connectors`: `BigQuery` and add our project `ext-prj-getindev`.
 
 4. Choose your dataset, `username_03_mart` and pick up the `dm_order_items` table, finish by clicking `Add`.
 
