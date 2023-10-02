@@ -99,6 +99,8 @@ For better understanding we will first create a custom singular test and apply i
       select * 
       from {{ ref('seed_tax_rates') }}
       where country <> trim(country)
+
+      -- Warning! This test fails badly! Think of next steps you need to do to fix this problem
       </pre>
       </details>
 
