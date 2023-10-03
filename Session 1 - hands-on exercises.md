@@ -39,8 +39,6 @@ The newly created notebook in JupyterHub should look like this:
 
 ## 2. Create your repository for your dbt project in Gitlab
 
-**Note that this chapter was part of a homework prep. If you have your repository already created, please skip this part and go to step 3 (Initialize and explore the dbt project)**
-
 GitLab is a web-based Git repository manager that provides a complete DevOps platform for source code management, continuous integration, deployment, monitoring, and more. In MDP we use it as our primary version control system and CICD orchestrator for every dbt project. In this short tutorial you will go through creating a base repository for your data transformations code. Your repo will be stored in a pre-configured group. This group has got several pre-defined variables and keys needed for CICD to synchronize the dbt project with other tools used as a part of MDP, ie. Apache Airflow, Datahub etc.
 
 1. Go to the Workshop Gitlab group page by copy-pasting the following link:
