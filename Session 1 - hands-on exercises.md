@@ -63,7 +63,7 @@ Normally, in order to kick-off and initialize your data transformation project, 
 
 To initialize your project follow the instructions:
 
-1. Navigate to your [JupyterLab notebook](https://google.com), click on terminal:
+1. Navigate to your [JupyterLab notebook](http://34.117.100.115/hub/login?next=%2Fhub%2F), click on terminal:
 
     <img width="700" alt="image" src="Images/Gitlab_project_03.png" >
 
