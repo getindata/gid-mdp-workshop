@@ -21,7 +21,7 @@ For more versions and images check out [our public repo](https://github.com/geti
 
 In Modern Data Platform by GID, the `JupyterLab` is a main workspace for an analytics engineer. Workspace container is created from a Dockerfile that contains pre-installed tools required for working with data transformations projects (`dbt`, `data_pipelines_cli`, `VSCode` as code editor/IDE). Thanks to that, you don't have to worry about managing dependencies (things like installing appropriate Python version on your local computer and any other packages required for the project).
 
-1. Go to `JupyterLab` instance: [here](https://google.com)
+1. Go to `JupyterLab` instance: [here](http://34.117.100.115/hub/login?next=%2Fhub%2F)
 2. Click on `Sign in with GitLab` button
 
 If not already signed in to JupyterHub, you'll be presented with a login screen:
